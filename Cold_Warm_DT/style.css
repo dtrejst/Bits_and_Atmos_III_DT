@@ -1,0 +1,31 @@
+#colorMain{
+    fill: #0084ff;
+}
+
+#colorSecondary{
+    fill: #ff0000;
+}
+
+#textColorMain{
+    fill: #2d334e;
+    font-size: 20px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+#textColorCold{
+    fill: #002fff;
+    font-size: 15px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+#textColorWarm{
+    fill: #ff0000;
+    font-size: 15px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
