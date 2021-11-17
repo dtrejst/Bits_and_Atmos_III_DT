@@ -10,8 +10,8 @@ async function init() {
   let sourceData = data.map((d) => {
     return {
       cityName: d['current_city'],
-      warmestMonth: d['Max_Temperature_of_Warmest_Month'],
-      coldestMonth: d [ 'Min_Temperature_of_Coldest_Month'],
+      warmestMonth: d['Max_Temperature_of_Warmest_Month'].toFixed(1),
+      coldestMonth: d [ 'Min_Temperature_of_Coldest_Month'].toFixed(1),
     };
   });
   // scaling function, thank you nicola :)) 
@@ -103,7 +103,7 @@ svg.append('text')
     // text for cold temptraue 
     textLabel
     .append('text')
-    .attr('x', 60)
+    .attr('x', 85)
     .attr('y', (value,index) => {
       return index * Ydisplacement + circlesXcoordinate + 70;
     })
@@ -114,7 +114,7 @@ svg.append('text')
     // text for warm tempture
     textLabel
     .append('text')
-    .attr('x', 1065)
+    .attr('x', 1085)
     .attr('y', (value,index) => {
       return index * Ydisplacement + circlesXcoordinate + 70;
     })
