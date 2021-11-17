@@ -16,16 +16,29 @@
 
 #textColorCold{
     fill: #002fff;
-    font-size: 15px;
+    font-size: 20px;
     font-family: Helvetica, sans-serif;
     font-weight: bold;
-    text-align: center;
+    text-align: start;
 }
 #textColorWarm{
     fill: #ff0000;
-    font-size: 15px;
+    font-size: 20px;
     font-family: Helvetica, sans-serif;
     font-weight: bold;
     text-align: center;
 }
-
+#textWarmTemp{
+    fill: #ff0000;
+    font-size: 13px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+#textColdTemp{
+    fill: #002fff;
+    font-size: 13px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}

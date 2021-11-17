@@ -14,19 +14,23 @@ async function init() {
       coldestMonth: d [ 'Min_Temperature_of_Coldest_Month'],
     };
   });
+  // scaling function, thank you nicola :)) 
+  function scale(number, inMin, inMax, outMin, outMax) {
+    return ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+  }
 
   console.log('sourceData: ', sourceData);
-
-  const Ydisplacement = 200;
+  console.log('arraylength: ', sourceData.length);
+  const Ydisplacement = 150;
   const circlesXcoordinate = 100;
-  const dataValueScaling = 2.2;
+  const dataValueScaling = 1.3;
 
   // Create canvas
   const svg = d3 // Variable linking to D3 library
     .select('#d3') // Selects ID from html file
     .append('svg') // Creates svg
     .attr("width", 2000) // Width of svg
-    .attr("height", 20000); // Height of svg
+    .attr("height", sourceData.length * Ydisplacement + 100); // Height of svg
 
   // enters data into function
   const circlesWarmest = svg.selectAll('circlesWarmest').data(sourceData).enter();
@@ -46,14 +50,15 @@ async function init() {
   .attr("y2",(value,index) => {
     return index * Ydisplacement + circlesXcoordinate;
    });
+   // create main text
 svg.append('text')
 .attr('x', 50)
-.attr('y', 40)
+.attr('y', 20)
 .attr('id', 'textColorCold')
 .text('Coldest month of the year');
 svg.append('text')
 .attr('x', 1000)
-.attr('y', 40)
+.attr('y', 20)
 .attr('id', 'textColorWarm')
 .text('Warmest month of the year');
   // Creates circles for Warmest temperature
@@ -66,7 +71,7 @@ svg.append('text')
       return index * Ydisplacement + circlesXcoordinate;
     })
     .attr('r', (value, index) => {
-      return value.warmestMonth * dataValueScaling;
+      return scale(value.warmestMonth, -40, 40, 0, 40) * dataValueScaling;
     })
     .attr('id', 'colorSecondary');
 
@@ -80,11 +85,11 @@ svg.append('text')
       return index * Ydisplacement + circlesXcoordinate;
     })
     .attr('r', (value, index) => {
-      return Math.abs(value.coldestMonth) * dataValueScaling;
+      return  scale(value.coldestMonth, -40, 40, 0, 40) * dataValueScaling;
     })
     .attr('id', 'colorMain');
 
-  // Create text labels
+  // Create text city labels
   textLabel
     .append('text')
     .attr('x', 500)
@@ -95,10 +100,29 @@ svg.append('text')
     .text((value, index) => {
       return value.cityName;
     })
-// Create lines
-
-
-}
+    // text for cold temptraue 
+    textLabel
+    .append('text')
+    .attr('x', 60)
+    .attr('y', (value,index) => {
+      return index * Ydisplacement + circlesXcoordinate + 70;
+    })
+    .attr('id', 'textColdTemp')
+    .text((value, index) => {
+      return value.coldestMonth;
+    })
+    // text for warm tempture
+    textLabel
+    .append('text')
+    .attr('x', 1065)
+    .attr('y', (value,index) => {
+      return index * Ydisplacement + circlesXcoordinate + 70;
+    })
+    .attr('id', 'textWarmTemp')
+    .text((value, index) => {
+      return value.warmestMonth;
+    })
+       }
 
 
 
