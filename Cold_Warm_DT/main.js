@@ -33,7 +33,29 @@ async function init() {
   const circlesColdest = svg.selectAll('circlesColdest').data(sourceData).enter();
   const textLabel = svg.selectAll('textLabel').data(sourceData).enter();
   const lines = svg.selectAll('lines').data(sourceData).enter();
-
+//draw lines between the cold and warm circels 
+  lines
+  .append('line')
+  .style("stroke", "black")
+  .style("stroke-width", 1)
+  .attr("x1", 100)
+  .attr("y1",(value,index) => {
+    return index * Ydisplacement + circlesXcoordinate;
+   })
+  .attr("x2", 1090)
+  .attr("y2",(value,index) => {
+    return index * Ydisplacement + circlesXcoordinate;
+   });
+svg.append('text')
+.attr('x', 50)
+.attr('y', 40)
+.attr('id', 'textColorCold')
+.text('Coldest month of the year');
+svg.append('text')
+.attr('x', 1000)
+.attr('y', 40)
+.attr('id', 'textColorWarm')
+.text('Warmest month of the year');
   // Creates circles for Warmest temperature
   circlesWarmest
     .append('circle')
@@ -75,28 +97,7 @@ async function init() {
     })
 // Create lines
 
-lines
-  .append('line')
-  .style("stroke", "black")
-  .style("stroke-width", 1)
-  .attr("x1", 100)
-  .attr("y1",(value,index) => {
-    return index * Ydisplacement + circlesXcoordinate;
-   })
-  .attr("x2", 1090)
-  .attr("y2",(value,index) => {
-    return index * Ydisplacement + circlesXcoordinate;
-   });
-svg.append('text')
-.attr('x', 50)
-.attr('y', 40)
-.attr('id', 'textColorCold')
-.text('Coldest month of the year');
-svg.append('text')
-.attr('x', 1000)
-.attr('y', 40)
-.attr('id', 'textColorWarm')
-.text('Warmest month of the year');
+
 }
 
 
